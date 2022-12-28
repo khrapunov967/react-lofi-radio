@@ -8,11 +8,11 @@ const MusicPlayer: React.FC = () => {
 
     return (
         <div className="w-full flex justify-center">
-            <button onClick={() => {setIsPlaying(prev => !prev)}}>
+            <button onClick={() => {setIsPlaying(prev => !prev)}} className={"active:scale-90 rounded-full transition-all duration-200 hover:translate-y-[-3px]"}>
                 <img 
                     src={isPlaying ? PauseIcon : PlayIcon} 
                     alt="pause" 
-                    className="w-[60px] h-[60px]"
+                    className="w-[77px] h-[77px]"
                 />
             </button>
         </div>
