@@ -5,10 +5,18 @@ import PlayIcon from "../assets/icons/play-icon.svg";
 const MusicPlayer: React.FC = () => {
 
     const [isPlaying, setIsPlaying] = useState(false);
+    const [volume, setVolume] = useState(0.5);
     const ref = useRef<HTMLAudioElement>(null);
     const songs: string[] = [
-        "https://firebasestorage.googleapis.com/v0/b/react-lofi-radio-app.appspot.com/o/lofi-test-song.wav?alt=media&token=c7741687-9366-477a-bd95-6b3653d5c5e3"
+        "https://firebasestorage.googleapis.com/v0/b/react-lofi-radio-app.appspot.com/o/lofi%20vibes%20-%20jet%20lag%20a%20lo-fi%20hiphop%20mix.mp3?alt=media&token=c54e817d-1534-49c0-a825-b4ab3cd4129b"
     ];
+
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.volume = volume;
+        }
+        console.log(volume);
+    }, [volume]);
 
 
     useEffect(() => {
@@ -22,7 +30,7 @@ const MusicPlayer: React.FC = () => {
     }, [isPlaying]);
 
     return (
-        <div className="w-full flex justify-center">
+        <div className="z-40 w-full flex flex-col items-center justify-center">
             {
                 songs.map(song => <audio ref={ref} src={song} key={song} />)
             }
@@ -34,6 +42,16 @@ const MusicPlayer: React.FC = () => {
                     className="w-[77px] h-[77px]"
                 />
             </button>
+
+            <input 
+                type="range" 
+                min={0}
+                max={1}
+                step={0.02}
+                value={volume}
+                onChange={(e) => setVolume(+e.target.value)}
+                className={"cursor-pointer"}
+            />
         </div>
     );
 };
