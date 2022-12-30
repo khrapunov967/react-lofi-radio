@@ -16,3 +16,24 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.volume-slider {
+  cursor: pointer;
+  height: 2px;
+  background-color: white;
+  outline: none;
+  transition: opacity .2s;
+  border-radius: 20px;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}

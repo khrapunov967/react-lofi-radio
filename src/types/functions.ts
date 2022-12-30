@@ -1,0 +1,1 @@
+export type onChangeVolume = (e: React.ChangeEvent<HTMLInputElement>) => void;

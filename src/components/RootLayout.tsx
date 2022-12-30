@@ -1,6 +1,6 @@
-import { rootLayoutProps } from "../types/props";
+import { RootLayoutProps } from "../types/props";
 
-const RootLayout: React.FC<rootLayoutProps> = ({children}) => {
+const RootLayout: React.FC<RootLayoutProps> = ({children}) => {
     return (
         <section>
             {children}

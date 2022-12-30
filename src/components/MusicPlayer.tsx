@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import PauseIcon from "../assets/icons/pause-icon.svg";
 import PlayIcon from "../assets/icons/play-icon.svg";
+import VolumeSlider from "./VolumeSlider";
 
 const MusicPlayer: React.FC = () => {
 
@@ -30,7 +31,7 @@ const MusicPlayer: React.FC = () => {
     }, [isPlaying]);
 
     return (
-        <div className="z-40 w-full flex flex-col items-center justify-center">
+        <div className="z-40 w-full flex flex-col gap-2 items-center justify-center">
             {
                 songs.map(song => <audio ref={ref} src={song} key={song} />)
             }
@@ -43,14 +44,12 @@ const MusicPlayer: React.FC = () => {
                 />
             </button>
 
-            <input 
-                type="range" 
+            <VolumeSlider
                 min={0}
                 max={1}
                 step={0.02}
                 value={volume}
-                onChange={(e) => setVolume(+e.target.value)}
-                className={"cursor-pointer"}
+                setVolume={(e) => setVolume(+e.target.value)}
             />
         </div>
     );
