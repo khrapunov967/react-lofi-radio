@@ -1,1 +1,1 @@
-export type onChangeVolume = (e: React.ChangeEvent<HTMLInputElement>) => void;
+export type handleChange = (e: React.ChangeEvent<HTMLInputElement>) => void;
