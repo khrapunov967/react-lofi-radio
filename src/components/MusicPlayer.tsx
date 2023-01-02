@@ -11,15 +11,16 @@ const MusicPlayer: React.FC = () => {
     let currSong = 0; // index of current song
 
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(0.5); // volume is between 0 and 1
+    const [volume, setVolume] = useState(0.5);
 
-    const ref = useRef<HTMLAudioElement>(null); // reference to audio component
-    const { songs, isFetching } = useAppSelector(state => state.songs); // list of a songs
+    const ref = useRef<HTMLAudioElement>(null);
+    const { songs, isFetching } = useAppSelector(state => state.songs); 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchSongs());
     }, [dispatch]);
+    
     
     useEffect(() => {
         if (ref.current) {
@@ -44,25 +45,33 @@ const MusicPlayer: React.FC = () => {
         currSong = currSong === songs.length - 1 ? 0 : currSong + 1;
 
         if (ref.current) {
-            ref.current.src = songs[currSong];
+            ref.current.src = songs[currSong].songUrl;
         }
 
         ref.current?.play();
 
     };
 
+    
+
+    if (isFetching) {
+        return (
+            <div className="z-40 w-full flex justify-center">
+                <Loader />
+            </div>
+        );
+    };
+
     return (
-        <div className="z-40 w-full flex gap-2 justify-center">
-            {
-                isFetching ? <Loader /> :
-                <button onClick={() => {setIsPlaying(prev => !prev)}} className={"active:scale-90 rounded-full transition-all duration-200 hover:translate-y-[-3px]"}>
-                    <img 
-                        src={isPlaying ? PauseIcon : PlayIcon} 
-                        alt="pause" 
-                        className="w-[67px] h-[67px]"
-                    />
-                </button>
-            }
+        <div className="z-40 w-full flex gap-2 justify-center">       
+            <button onClick={() => {setIsPlaying(prev => !prev)}} className={"active:scale-90 rounded-full transition-all duration-200 hover:translate-y-[-3px]"}>
+                <img 
+                    src={isPlaying ? PauseIcon : PlayIcon} 
+                    alt="pause" 
+                    className="w-[67px] h-[67px]"
+                />
+            </button>
+          
 
             <VolumeBar
                 min={0}
@@ -74,7 +83,7 @@ const MusicPlayer: React.FC = () => {
 
             <audio 
                 ref={ref} 
-                src={songs[currSong]} 
+                src={songs[currSong]?.songUrl} 
                 key={currSong} 
                 onEnded={handleEnded} 
             />

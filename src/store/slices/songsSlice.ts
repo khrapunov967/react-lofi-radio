@@ -1,20 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { FirebaseService } from "../../services/FirebaseService";
+import { SongsService } from "../../services/SongsService";
+import { Song, songsSliceInitialState } from "../../types/data";
 
-export const fetchSongs = createAsyncThunk<string[]>(
+export const fetchSongs = createAsyncThunk<Song[]>(
     "songs/fetchSongs",
     async () => {
-        const songs = await FirebaseService.getSongsFromStorage();
+        const songs = await SongsService.getSongs();
         return songs;
     }
 )
 
-type state = {
-    songs: string[];
-    isFetching: boolean;
-}
-
-const initialState: state = {
+const initialState: songsSliceInitialState = {
     songs: [],
     isFetching: false
 }

@@ -1,6 +1,1 @@
-export const songNames: string[] = [
-    "song2.mp3",
-    "song3.mp3",
-    "song4.mp3",
-    "song1.mp3",
-];
+export const BASE_API_URL = "https://63b2eb05ea89e3e3db38991b.mockapi.io/lofi-radio-api";
