@@ -3,7 +3,7 @@ export type Song = {
     songUrl: string;
 }
 
-export type songsSliceInitialState = {
+export type songsInitialState = {
     songs: Song[];
     isFetching: boolean;
 }

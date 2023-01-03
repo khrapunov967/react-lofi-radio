@@ -13,9 +13,9 @@ const MusicPlayer: React.FC = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
 
-    const ref = useRef<HTMLAudioElement>(null);
     const { songs, isFetching } = useAppSelector(state => state.songs); 
     const dispatch = useAppDispatch();
+    const ref = useRef<HTMLAudioElement>(null);
 
     useEffect(() => {
         dispatch(fetchSongs());
