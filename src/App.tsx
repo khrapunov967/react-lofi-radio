@@ -15,6 +15,7 @@ const App: React.FC = () => {
             src={LofiBanner} 
             alt="Lofi Radio" 
             className="w-[256px] h-[128px]"
+            draggable={false}
           />
 
           <MusicPlayer />
